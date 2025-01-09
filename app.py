@@ -2,23 +2,25 @@ from flask import Flask, jsonify
 import os
 from dotenv import load_dotenv
 from models import db, Bank, Branch
+from flask_sqlalchemy import SQLAlchemy
 
 
 load_dotenv()
 
-db_user = os.getenv('DB_USER')
-db_password = os.getenv('DB_PASSWORD')
-db_host = os.getenv('DB_HOST')
-db_port = os.getenv('DB_PORT')
-db_name = os.getenv('DB_NAME')
+# db_user = os.getenv('DB_USER')
+# db_password = os.getenv('DB_PASSWORD')
+# db_host = os.getenv('DB_HOST')
+# db_port = os.getenv('DB_PORT')
+# db_name = os.getenv('DB_NAME')
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
 
 #Initializing the database 
-db.init_app(app)
+db = SQLAlchemy(app)
 
 #Routes
 @app.route('/')
@@ -69,5 +71,7 @@ def get_branch_by_ifsc(ifsc):
         return jsonify({'error': str(e)}), 500
 
 
+DEBUG_MODE = os.getenv('DEBUG_MODE') == 'True'
+
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=DEBUG_MODE)
