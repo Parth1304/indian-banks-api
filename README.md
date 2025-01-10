@@ -1,6 +1,3 @@
-Here is the `README.md` file based on the requirements:
-
-```markdown
 # Indian Banks API
 
 This repository contains a Flask-based API that interacts with a PostgreSQL database to provide details of Indian banks and their branches. The API allows you to retrieve information such as the list of banks and specific branch details using the IFSC code.
