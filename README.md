@@ -14,6 +14,8 @@ The API offers the following features:
 - Retrieve a list of all banks.
 - Get branch details using the IFSC code.
 
+You can also test the live version of the app at: [Live API Link](https://indian-banks-api.onrender.com)
+
 ## Steps to Run the Application Locally
 
 1. **Clone the Repository**:
@@ -77,11 +79,11 @@ The total time taken to complete this assignment was approximately **2 days**, i
 - Testing the API endpoints.
 - Creating Docker support for easier local setup.
 - Debugging and refining the application.
-(The most challenging thing was to deploy the app, as I had to learn how to containerize, and deploy the app and the postgres database)
+- (The most challenging thing was to deploy the app, as I had to learn how to containerize through docker, and deploy the app and the postgres database)
 
 ---
 
 Feel free to open an issue or submit a pull request if you have any questions or improvements to suggest.
 ```
 
-This `README.md` should meet the requirements for the assignment and provide clear steps for running the project locally, as well as a description of how the problem was solved and the time taken. Let me know if you'd like any changes!
+Now, the `README.md` includes the live server link where the application is hosted.
