@@ -1,121 +1,204 @@
+You got it, Parth! Here's the complete, clean, and professional `README.md` you can copy directly into your GitHub repo for the **Indian Banks API** project — with both **Docker** and **manual setup** instructions.
+
+---
+
+
 # Indian Banks API
 
-This repository contains a Flask-based API that interacts with a PostgreSQL database to provide details of Indian banks and their branches. The API allows you to retrieve information such as the list of banks and specific branch details using the IFSC code.
-
-## Problem Solved
-
-The goal of this project was to create an API that can provide data related to Indian banks. The main tasks involved:
-
-1. **Setting up a PostgreSQL database**: I used a provided `.sql` backup file (`indianbanks.sql`) to populate the database with information about banks, branches, and their details.
-2. **Creating a Flask API**: The API was developed to allow users to retrieve data from the PostgreSQL database via specific endpoints.
-3. **Containerization with Docker**: To make the application easier to set up and run locally, I created a `Dockerfile` and `docker-compose.yml` for containerization.
-
-### The API offers the following features:
-- **Retrieve a list of all banks**: Get the names and IDs of all banks stored in the database.
-- **Get branch details using the IFSC code**: Fetch branch-specific details (address, district, state, etc.) by providing the IFSC code.
-
-You can also test the live version of the app at: [Live API Link](https://indian-banks-api.onrender.com)
-
-## Project Structure
-
-The project consists of the following key files:
-
-- `app.py`: The main Flask application file, where the routes and logic for querying the database are defined.
-- `models.py`: Defines the SQLAlchemy database models (Bank, Branch) for interacting with the PostgreSQL database.
-- `requirements.txt`: Lists all the Python dependencies needed to run the application.
-- `docker-compose.yml`: Defines the Docker services for the app and PostgreSQL database, enabling easy local setup.
-- `Dockerfile`: The Docker configuration file for building the app's container.
-- `.env`: Contains environment variables for database configuration (user, password, host, etc.).
-- `indian_banks.sql`: The SQL backup file containing the data for banks and branches.
-
-## Key Routes
-
-- **`GET /`**: Basic home route that provides an overview of available API endpoints.
-- **`GET /get/banks`**: Retrieves a list of all banks, including their `id` and `name`.
-- **`GET /get/branch/<ifsc>`**: Retrieves branch details (e.g., address, city, state) for a given IFSC code.
-
-## Steps to Run the Application Locally
-
-1. **Clone the Repository**:
-   ```bash
-   git clone <repository_url>
-   ```
-
-2. **Set Up PostgreSQL Database**:
-   - Install PostgreSQL on your machine.
-   - Create a new database (`indian_banks`) in PostgreSQL.
-   - Restore the `indian_banks.sql` file to populate the database:
-     ```bash
-     psql -U postgres -d indian_banks -f path_to_indian_banks.sql
-     ```
-
-3. **Create a `.env` File**:
-   In the root directory of the project, create a `.env` file and add the following variables:
-   ```env
-   DB_USER=postgres
-   DB_PASSWORD=your_password
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_NAME=indian_banks
-   ```
-
-4. **Install Dependencies**:
-   Create a virtual environment and install the necessary dependencies:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # macOS/Linux
-   venv\Scripts\activate  # Windows
-   pip install -r requirements.txt
-   ```
-
-5. **Run the Application**:
-
-   **Option 1: Using Docker (Recommended)**:
-   - Run the app and PostgreSQL in containers:
-     ```bash
-     docker-compose up --build
-     ```
-   - The app will be accessible at `http://localhost:5000`.
-
-   **Option 2: Without Docker**:
-   - Run the Flask app directly:
-     ```bash
-     flask run
-     ```
-   - Ensure the `.env` file is configured correctly.
-
-6. **Test the API**:
-   - **Get all banks**: `GET /get/banks`
-   - **Get branch details by IFSC**: `GET /get/branch/<ifsc>`
-
-## Time Taken to Complete the Assignment
-
-The total time taken to complete this assignment was approximately **2 days**. Here's a breakdown of the time spent on various tasks:
-
-1. **Database Setup**: 
-   - Set up PostgreSQL and restored the `.sql` file to populate the database with bank and branch data.
-
-2. **Flask API Development**: 
-   - Defined routes to handle API requests.
-   - Implemented the logic to fetch data from the PostgreSQL database using SQLAlchemy.
-
-3. **Dockerization**: 
-   - Created `Dockerfile` and `docker-compose.yml` to containerize the app and PostgreSQL database, enabling easy local setup.
-   - Faced some challenges with PostgreSQL connection settings in the Docker container but resolved them by ensuring correct environment variables were passed.
-
-4. **Testing and Debugging**: 
-   - Tested the application and fixed issues related to database queries and Flask routes.
-   - Ensured proper error handling for missing or incorrect IFSC codes.
-
-5. **Deployment**: 
-   - Deployed the app on Render for live access, ensuring all components worked together.
-
-### Challenges Faced
-- **PostgreSQL Setup**: There were challenges in setting up the PostgreSQL database and ensuring it worked seamlessly with Flask and Docker.
-- **Docker Configuration**: Learning how to containerize both Flask and PostgreSQL was a challenge. The key was understanding how to properly link the app and the database in Docker and passing the correct environment variables.
+A Flask-based REST API that provides real-time information on Indian banks and their branches using IFSC codes and bank IDs. Built with PostgreSQL, SQLAlchemy, and Docker for local deployment and testing.
 
 ---
 
-Feel free to open an issue or submit a pull request if you have any questions or improvements to suggest.
+## 🚀 Features
+
+- 🔍 Get branch details using IFSC code
+- 🏦 List all Indian banks
+- 🐘 PostgreSQL database integration using `.sql` dump
+- 📦 Docker & Docker Compose support
+- 🔐 Environment variable-based configuration
+- 🌐 Clean RESTful API architecture
 
 ---
+
+## 🗂 Project Structure
+
+```
+
+indian-banks-api/
+│
+├── app.py                  # Main Flask application
+├── models.py               # SQLAlchemy models
+├── requirements.txt        # Python dependencies
+├── Dockerfile              # App container setup
+├── docker-compose.yml      # Orchestration for Flask + Postgres
+├── indian\_banks.sql        # SQL dump with bank data
+├── .env                    # Environment variables (user creates this)
+└── README.md               # You're reading it
+
+````
+
+---
+
+## 🧪 API Endpoints
+
+| Method | Endpoint                    | Description                            |
+|--------|-----------------------------|----------------------------------------|
+| GET    | `/`                         | Home route / welcome message           |
+| GET    | `/get/banks`               | Get list of all banks                  |
+| GET    | `/get/branch/<ifsc>`       | Get branch details by IFSC code        |
+
+---
+
+## 📦 Option 1: Run with Docker (Recommended)
+
+### ✅ 1. Clone the Repository
+```bash
+git clone https://github.com/Parth1304/indian-banks-api.git
+cd indian-banks-api
+````
+
+### ✅ 2. Create `.env` File
+
+In the root directory, create a `.env` file:
+
+```env
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_HOST=db
+DB_PORT=5432
+DB_NAME=indian_banks
+```
+
+### ✅ 3. Start the App
+
+```bash
+docker-compose up --build
+```
+
+App will run at:
+📍 `http://localhost:5000`
+
+---
+
+## 🛠 Option 2: Run Without Docker
+
+> For users who want to run the project manually using Flask and their local PostgreSQL setup.
+
+### ✅ 1. Install PostgreSQL
+
+Download & install from: [https://www.postgresql.org/download/](https://www.postgresql.org/download/)
+
+Create a database named:
+
+```sql
+indian_banks
+```
+
+### ✅ 2. Import SQL Dump
+
+Run the following command:
+
+```bash
+psql -U your_username -d indian_banks -f path/to/indian_banks.sql
+```
+
+Replace:
+
+* `your_username` with your Postgres username (often `postgres`)
+* `path/to/...` with the correct path to the SQL file
+
+---
+
+### ✅ 3. Set Up Python Environment
+
+```bash
+python -m venv venv
+venv\Scripts\activate        # Windows
+# or
+source venv/bin/activate    # Mac/Linux
+```
+
+### ✅ 4. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### ✅ 5. Create `.env` File
+
+```env
+DB_USER=your_username
+DB_PASSWORD=your_password
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=indian_banks
+```
+
+### ✅ 6. Run the App
+
+```bash
+flask run
+```
+
+Visit:
+📍 `http://localhost:5000`
+
+---
+
+## 🧾 Sample Response
+
+**Endpoint:**
+
+```
+GET /get/branch/SBIN0005943
+```
+
+**Response:**
+
+```json
+{
+  "ifsc": "SBIN0005943",
+  "branch": "GREATER NOIDA",
+  "address": "ALPHA COMMERCIAL BELT, GREATER NOIDA, U.P.",
+  "city": "GREATER NOIDA",
+  "district": "GAUTAM BUDDHA NAGAR",
+  "state": "UTTAR PRADESH",
+  "bank_name": "STATE BANK OF INDIA"
+}
+```
+
+---
+
+## 🧱 Built With
+
+* 🐍 Python (Flask)
+* 🐘 PostgreSQL
+* 🐳 Docker & Docker Compose
+* ⚙️ SQLAlchemy
+* 🔐 python-dotenv
+
+---
+
+## 📌 License
+
+This project is for educational purposes only. Indian bank data used via `.sql` dump is assumed to be sample or publicly available data.
+
+---
+
+## 🙋‍♂️ Author
+
+**Parth Khandelwal**
+📧 [khandelwal.parth2000@gmail.com](mailto:khandelwal.parth2000@gmail.com)
+🌐 [GitHub](https://github.com/Parth1304) | [LinkedIn](https://linkedin.com/in/parth-khandelwal-55a974192)
+
+---
+
+```
+
+Let me know if you'd like me to include:
+- Badges at the top (build passing, Python version, etc.)
+- A live deployed link (e.g., on Render)
+- A short demo video or screenshot section
+
+
+```
