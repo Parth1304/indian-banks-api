@@ -1,7 +1,3 @@
-You got it, Parth! Here's the complete, clean, and professional `README.md` you can copy directly into your GitHub repo for the **Indian Banks API** project — with both **Docker** and **manual setup** instructions.
-
----
-
 
 # Indian Banks API
 
